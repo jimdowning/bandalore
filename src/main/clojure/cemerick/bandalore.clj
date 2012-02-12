@@ -31,10 +31,9 @@
 
    Specify an optional :visibility keyword arg to set the new queue's default
    visibility timeout in seconds."
-  [^AmazonSQSClient client queue-name & {:keys [visibility]}]
-  (->> (if visibility
-        (CreateQueueRequest. queue-name visibility)
-        (CreateQueueRequest. queue-name))
+  [^AmazonSQSClient client queue-name ]
+  (->>
+    (CreateQueueRequest. queue-name)
     (.createQueue client)
     .getQueueUrl))
 
